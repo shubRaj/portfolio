@@ -40,8 +40,8 @@ if not DEBUG:
             "PASSWORD": CONFIG.get("DB_PASSWORD"),
         }
     }
-    CSRF_COOKIE_SECURE = True
-    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = False
 
 else:
     DATABASES = {

@@ -11,7 +11,6 @@ django-taggit = "*"
 markdown = "*"
 python-dotenv = "*"
 gunicorn = "*"
-django-minify-html = "*"
 
 [dev-packages]
 

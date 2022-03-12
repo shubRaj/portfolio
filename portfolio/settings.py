@@ -41,6 +41,7 @@ if not DEBUG:
     }
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
+
 else:
     DATABASES = {
         'default': {
@@ -50,6 +51,7 @@ else:
     }
 STATIC_URL = 'static/'
 MEDIA_URL = "media/"
+STATIC_ROOT = BASE_DIR/"assets"/"webapp"
 MEDIA_ROOT = BASE_DIR/"media"/"webapp"
 
 # Application definition

@@ -28,6 +28,7 @@ DEBUG = CONFIG.get("DEBUG", False)
 ALLOWED_HOSTS = []
 
 if not DEBUG:
+    PREPEND_WWW = True
     ALLOWED_HOSTS += [".shubraj.com", "localhost"]
     DATABASES = {
         'default': {

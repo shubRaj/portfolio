@@ -1,0 +1,40 @@
+{% extends "webapp/_base.html" %}
+{% load webapp_extras %}
+{% block extra_header %}
+    <meta content="{% for tag in article.tags.all %}{{tag}}{% if not forloop.last %},{% endif %}{% endfor %}" name="keywords" />
+    <meta content="summary" name="twitter:card" />
+    <meta content="@shub_raj_lama" name="twitter:site" />
+    <meta content="@shub_raj_lama" name="twitter:creator" />
+    <meta content="{{article.title}}" name="twitter:title" />
+    <meta content="{{article.body|truncatewords:20}}" name="twitter:description" />
+    <meta content="{{large_profile}}" name="twitter:image" />
+    <meta content="{{full_name}}" property="og:site_name" />
+    <meta content="en_US" property="og:locale" />
+    <meta content="article" property="og:type" />
+    <meta content="{{article.title}}" property="og:title" />
+    <meta content="{{article.body|truncatewords:20}}" property="og:description" />
+    <meta content="{{request.scheme}}://{{request.get_host}}{{request.get_full_path}}" property="og:url" />
+    <meta content="{{large_profile}}" property="og:image" />
+    <meta content="{{article.published_on|date:'Y-m-d'}}" property="article:published_time" />
+    {% if not article.published_on %}
+        <meta content="{{article.updated_on|date:'Y-m-d'}}" property="article:modified_time" />
+    {% else %}
+        <meta content="{{article.published_on|date:'Y-m-d'}}" property="article:modified_time" />
+    {% endif %}
+    <meta content="https://instagram.com/shub_raj_lama/" property="article:author" />
+{% endblock extra_header %}
+{% block title %}{{article.title}}{% endblock title %}
+{% block description %}{{article.body|truncatewords:20}}{% endblock description %}
+{% block content %}
+<main>
+    <article class="post content">
+        <header class="post__head">
+            <h1>{{article.title}}</h1>
+            <time class="gray-on-white" dateTime="{{article.published_on|date:'Y-m-d'}}">{{article.published_on|date:"F j, Y"}}</time>
+        </header>
+        <section class="post__body">
+            {{article.body|markdown}}
+        </section>
+    </article>
+</main>
+{% endblock content %}

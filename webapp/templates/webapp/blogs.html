@@ -1,0 +1,22 @@
+{% extends 'webapp/_base.html' %}
+{% load webapp_extras %}
+{% block title %}
+Blogs
+{% endblock title %}
+{% block content %}
+<main>
+    <div class="content">
+        <h1>Blogs</h1>
+        <p>Since {{oldest_post|date:"M j, Y"}}, I’ve written {{posts_count}} post{{posts_count|pluralize:"s"}}. Here’s the complete list.</p>
+        {% for article in articles %} 
+            <h2>{{article.year}}</h2>
+            <ul>
+                {% for post in article.objects %}
+                <li><a href="{% url 'app_webapp:article_detail' post.slug %}">{{post.title}}</a> — <time
+                        dateTime="{{post.published_on|date:'Y-m-d'}}">{{post.published_on|date:"M j"}}</time></li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </div>
+</main>
+{% endblock content %}

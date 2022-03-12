@@ -1,0 +1,28 @@
+{% extends 'webapp/_base.html' %}
+{% load webapp_extras %}
+{% block content %}
+    <main>
+        <div class="content">
+            <h1 style="margin-bottom:32px">Recent Blogs</h1>
+            {% for article in articles %}
+            <article>
+                <h2 style="margin:0;font-weight:500;padding-bottom:0;padding-top:0"><a class="black-link"
+                        href="{% url 'app_webapp:article_detail' article.slug %}">{{article.title|title}}</a></h2>
+                <div style="margin-bottom:8px"><time class="gray-on-white"
+                        dateTime="{{article.published_on|date:'Y-m-d'}}">{{article.published_on|date:"F j, Y"}}</time>
+                </div>
+                <div>
+                    <p>{{article.body|truncatewords:20|markdown}}</p>
+                </div>
+            </article>
+            {% if not forloop.last %}
+            <hr />
+            {% endif %}
+            {% endfor %}
+            {% if articles_count > 10 %}
+                <div class="well mt-32">There are <a href="/blog">{{articles_count}} posts in the archive</a>, why not check them out?
+                </div>
+            {% endif %}
+        </div>
+    </main>
+{% endblock content %}

@@ -40,8 +40,9 @@ if not DEBUG:
             "PASSWORD": CONFIG.get("DB_PASSWORD"),
         }
     }
-    CSRF_COOKIE_SECURE = False
-    SESSION_COOKIE_SECURE = False
+    CSRF_TRUSTED_ORIGINS = ["https://www.shubraj.com","http://www.shubraj.com"]
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
 
 else:
     DATABASES = {

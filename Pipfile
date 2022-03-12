@@ -10,6 +10,7 @@ psycopg2 = "*"
 django-taggit = "*"
 markdown = "*"
 python-dotenv = "*"
+gunicorn = "*"
 
 [dev-packages]
 

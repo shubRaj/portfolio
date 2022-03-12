@@ -31,10 +31,10 @@ if not DEBUG:
     ALLOWED_HOSTS += [".shubraj.com", "localhost"]
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.mysql',
             'NAME': CONFIG.get("DB_NAME"),
             "HOST": CONFIG.get("DB_HOST"),
-            "PORT": 5432,
+            "PORT": 3306,
             "USER": CONFIG.get("DB_USER"),
             "PASSWORD": CONFIG.get("DB_PASSWORD"),
         }

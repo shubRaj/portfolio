@@ -67,9 +67,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'webapp.apps.WebappConfig',
     'taggit',
+    "django_minify_html",
 ]
 
 MIDDLEWARE = [
+    "django_minify_html.middleware.MinifyHtmlMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

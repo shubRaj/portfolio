@@ -6,13 +6,13 @@
     <meta content="@shub_raj_lama" name="twitter:site" />
     <meta content="@shub_raj_lama" name="twitter:creator" />
     <meta content="{{article.title}}" name="twitter:title" />
-    <meta content="{{article.body|markdown|truncatewords:20}}" name="twitter:description" />
+    <meta content="{{article.body|markdown|striptags|truncatewords:20}}" name="twitter:description" />
     <meta content="{{large_profile}}" name="twitter:image" />
     <meta content="{{full_name}}" property="og:site_name" />
     <meta content="en_US" property="og:locale" />
     <meta content="article" property="og:type" />
     <meta content="{{article.title}}" property="og:title" />
-    <meta content="{{article.body|markdown|truncatewords:20}}" property="og:description" />
+    <meta content="{{article.body|markdown|striptags|truncatewords:20}}" property="og:description" />
     <meta content="{{request.scheme}}://{{request.get_host}}{{request.get_full_path}}" property="og:url" />
     <meta content="{{large_profile}}" property="og:image" />
     <meta content="{{article.published_on|date:'Y-m-d'}}" property="article:published_time" />
@@ -24,7 +24,7 @@
     <meta content="https://instagram.com/shub_raj_lama/" property="article:author" />
 {% endblock extra_header %}
 {% block title %}{{article.title}}{% endblock title %}
-{% block description %}{{article.body|markdown|truncatewords:20}}{% endblock description %}
+{% block description %}{{article.body|markdown|striptags|truncatewords:20}}{% endblock description %}
 {% block content %}
 <main>
     <article class="post content">

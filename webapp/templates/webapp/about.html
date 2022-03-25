@@ -1,7 +1,9 @@
 {% extends 'webapp/_base.html' %}
+{% load webapp_extras %}
 {% block title %}
 About
 {% endblock title %}
+{% block description %}{{about|default:"Hey there"|markdown|striptags|truncatewords:20}}{% endblock description %}
 {% block content %}
 <main>
     <section class="content" style="max-width:580px">

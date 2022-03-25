@@ -1,10 +1,12 @@
 from django.views import generic
-from .models import Article
+from .models import Article,Page
 from django.shortcuts import render
 from django.template.defaultfilters import timesince
 from django.contrib.auth import get_user_model
 from django.db.models.functions import ExtractYear
 import datetime
+from django.views.decorators.http import require_GET
+from django.http import HttpResponse
 
 
 class HomeView(generic.ListView):
@@ -12,11 +14,11 @@ class HomeView(generic.ListView):
     context_object_name = "articles"
 
     def get_queryset(self):
-        return Article.objects.all()[:10]
+        return Article.objects.filter(is_draft=False)[:10]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["articles_count"] = Article.objects.count()
+        context["articles_count"] = Article.objects.filter(is_draft=False).count()
         return context
 
 
@@ -24,7 +26,10 @@ class ArticleView(generic.DetailView):
     template_name = "webapp/detail.html"
     context_object_name = "article"
     model = Article
-
+class PageDetailView(generic.DetailView):
+    template_name = "webapp/page_detail.html"
+    context_object_name = "page"
+    model = Page
 
 class ArticleYearView(generic.View):
     template_name = "webapp/blogs.html"
@@ -61,5 +66,14 @@ class ArticleYearView(generic.View):
             results = [{"year": year, "objects": qs.filter(
                 year=year)} for year in years]
             context.update({self.context_object_name: results,
-                           "posts_count": qs.count(),})
+                           "posts_count": qs.count(), })
         return render(request, self.template_name, context)
+
+
+@require_GET
+def robots_txt(request):
+    lines = [
+        "User-Agent: *",
+        "Sitemap: ",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")

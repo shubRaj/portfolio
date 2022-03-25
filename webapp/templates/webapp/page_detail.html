@@ -1,0 +1,40 @@
+{% extends "webapp/_base.html" %}
+{% load webapp_extras %}
+{% block extra_header %}
+    <meta content="{{page.name|lower}}" name="keywords" />
+    <meta content="summary" name="twitter:card" />
+    <meta content="@shub_raj_lama" name="twitter:site" />
+    <meta content="@shub_raj_lama" name="twitter:creator" />
+    <meta content="{{page.title}}" name="twitter:title" />
+    <meta content="{{page.body|markdown|truncatewords:20}}" name="twitter:description" />
+    <meta content="{{large_profile}}" name="twitter:image" />
+    <meta content="{{full_name}}" property="og:site_name" />
+    <meta content="en_US" property="og:locale" />
+    <meta content="article" property="og:type" />
+    <meta content="{{page.name}}" property="og:title" />
+    <meta content="{{page.body|markdown|truncatewords:20}}" property="og:description" />
+    <meta content="{{request.scheme}}://{{request.get_host}}{{request.get_full_path}}" property="og:url" />
+    <meta content="{{large_profile}}" property="og:image" />
+    <meta content="{{page.published_on|date:'Y-m-d'}}" property="article:published_time" />
+    {% if not page.published_on %}
+        <meta content="{{page.updated_on|date:'Y-m-d'}}" property="article:modified_time" />
+    {% else %}
+        <meta content="{{page.published_on|date:'Y-m-d'}}" property="article:modified_time" />
+    {% endif %}
+    <meta content="https://instagram.com/shub_raj_lama/" property="article:author" />
+{% endblock extra_header %}
+{% block title %}{{page.name}}{% endblock title %}
+{% block description %}{{page.body|markdown|truncatewords:20}}{% endblock description %}
+{% block content %}
+<main>
+    <article class="post content">
+        <header class="post__head">
+            <h1>{{page.name}}</h1>
+            <time class="gray-on-white" dateTime="{{page.published_on|date:'Y-m-d'}}">{{page.published_on|date:"F j, Y"}}</time>
+        </header>
+        <section class="post__body">
+            {{page.body|markdown}}
+        </section>
+    </article>
+</main>
+{% endblock content %}

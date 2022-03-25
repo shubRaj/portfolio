@@ -37,7 +37,8 @@ class ArticleYearView(generic.View):
     template_name = "webapp/blogs.html"
     context_object_name = "articles"
     model = Article
-
+    def get_queryset(self):
+        return self.model.objects.filter(is_draft=False)
     def get(self, request, *args, **kwargs):
         context = {}
         USER = get_user_model()
@@ -61,7 +62,7 @@ class ArticleYearView(generic.View):
             else:
                 since = f"{days} days"
             context["since"] = since
-        qs = self.model.objects.annotate(year=ExtractYear(
+        qs = self.get_queryset().annotate(year=ExtractYear(
             "published_on")).order_by("-published_on")
         if qs.exists():
             years = set(qs.order_by("-year").values_list("year", flat=True))

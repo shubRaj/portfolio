@@ -59,8 +59,8 @@ class Page(models.Model):
         else:
             self.updated_on = self.published_on
         super().save(*args, **kwargs)
-    # def get_absolute_url(self):
-    #     return reverse("app_webapp:pag")
+    def get_absolute_url(self):
+        return reverse("app_webapp:page_detail",kwargs={"slug":self.slug})
 
 
 class Configuration(models.Model):

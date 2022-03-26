@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from .views import ArticleYearView, HomeView, ArticleView, PageDetailView
 from django.views import generic
 app_name = "app_webapp"

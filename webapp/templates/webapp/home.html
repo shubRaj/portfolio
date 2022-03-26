@@ -12,7 +12,7 @@
                         dateTime="{{article.published_on|date:'Y-m-d'}}">{{article.published_on|date:"F j, Y"}}</time>
                 </div>
                 <div>
-                    <p>{{article.body|truncatewords:20|markdown}}</p>
+                    <p>{{article.body|markdown|striptags|truncatewords:20}}</p>
                 </div>
             </article>
             {% if not forloop.last %}

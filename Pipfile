@@ -11,6 +11,7 @@ django-taggit = "*"
 markdown = "*"
 python-dotenv = "*"
 gunicorn = "*"
+django-summernote = "*"
 
 [dev-packages]
 

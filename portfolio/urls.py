@@ -25,7 +25,7 @@ sitemaps = {
     'pages': PageSitemap,
 }
 urlpatterns = [
-    path('logmein/', admin.site.urls),
+    path(f"{settings.LOGIN_PATH}/", admin.site.urls),
     path('editor/', include('django_summernote.urls')),
     path("robots.txt", robots_txt, name="robot"),
     path('sitemap.xml', views.index, {'sitemaps': sitemaps},

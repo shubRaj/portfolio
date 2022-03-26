@@ -25,6 +25,7 @@ CONFIG = os.environ
 SECRET_KEY = CONFIG.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = CONFIG.get("DEBUG", False)
+LOGIN_PATH = CONFIG.get("LOGIN_PATH","login")
 ALLOWED_HOSTS = []
 
 if not DEBUG:

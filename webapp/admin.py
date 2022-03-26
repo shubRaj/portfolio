@@ -18,6 +18,7 @@ class ArticleAdmin(SummernoteModelAdmin):
 class ConfigurationAdmin(admin.ModelAdmin):
     list_display = ("full_name", "position")
 @admin.register(Page)
-class PageAdmin(admin.ModelAdmin):
+class PageAdmin(SummernoteModelAdmin):
     list_display = ("name","updated_on")
     prepopulated_fields = {"slug": ("name",)}
+    summernote_fields = ('body', )

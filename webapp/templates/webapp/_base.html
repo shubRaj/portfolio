@@ -21,7 +21,6 @@
     {% block extra_header %}
     {% endblock extra_header %}
     <style>
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -588,6 +587,10 @@
             margin-top: 4px
         }
     </style>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js"
+        data-cfasync="false"></script>
     <script src="{% static 'webapp/main.js' %}" async></script>
 </head>
 

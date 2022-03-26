@@ -34,7 +34,7 @@
             },
             content: {
                 message: "We serve cookies on this site to analyze traffic, remember your preferences, and optimize your experience.",
-                href: `${loc.protocol}://${loc.hostname}/privacy-policy/`
+                href: `/privacy-policy/`
             },
             onInitialise: async function (status) {
                 if (status == cookieconsent.status.allow) await myScripts();
